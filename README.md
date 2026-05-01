@@ -151,9 +151,3 @@ pip install flask google-generativeai python-dotenv
 ## 🤝 Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
-
----
-
-## 📄 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
