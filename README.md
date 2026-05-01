@@ -46,7 +46,7 @@ ai-code-annotator/
 ├── templates/
 │   ├── index.html       # Code Annotator UI
 │   └── readme.html      # README Generator UI
-├── key.env              # Environment variables (not committed)
+├── .env              # Environment variables (not committed)
 ├── requirements.txt
 └── README.md
 ```
@@ -82,7 +82,7 @@ pip install -r requirements.txt
 
 ### 4. Set up your Gemini API key
 
-Create a `key.env` file in the project root:
+Create a `.env` file in the project root:
 
 ```
 GEMINI_API_KEY=your-gemini-api-key-here
@@ -90,7 +90,7 @@ GEMINI_API_KEY=your-gemini-api-key-here
 
 > Get your free API key at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
 
-Add `key.env` to `.gitignore` to keep it out of version control:
+Add `.env` to `.gitignore` to keep it out of version control:
 
 ```
 key.env
