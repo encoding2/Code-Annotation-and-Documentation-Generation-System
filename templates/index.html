@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Code Annotator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a1929;
+            color: #e0e7ff;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #4de6bb;
+        }
+
+        textarea {
+            width: 100%;
+            height: 220px;
+            background-color: #0f1f2e;
+            color: #ffffff;
+            border: 1px solid #333;
+            padding: 10px;
+            font-family: Consolas, monospace;
+            box-sizing: border-box;
+        }
+
+        input[type="file"],
+        button {
+            margin-top: 10px;
+            padding: 8px 12px;
+        }
+
+        button {
+            background-color: #4de6bb;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #2dd4aa;
+        }
+
+        button:disabled {
+            background-color: #2a7a6a;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        pre {
+            background-color: #0f1f2e;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .nav a {
+            color: #4de6bb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        hr {
+            border: 1px solid #233554;
+            margin-top: 30px;
+        }
+
+        /* ---------- Loading overlay ---------- */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 25, 41, 0.85);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        #loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #1e3a5f;
+            border-top-color: #4de6bb;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #4de6bb;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+        }
+
+        .loading-sub {
+            color: #8899bb;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <div class="loading-text">Annotating your code…</div>
+        <div class="loading-sub">This may take a few seconds</div>
+    </div>
+
+    <div class="nav">
+        <a href="/readme">📄 README Generator</a>
+    </div>
+
+    <h2>AI Code Annotator</h2>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form id="annotate-form" method="POST" action="/annotate" enctype="multipart/form-data">
+        <label><b>Paste Code:</b></label>
+        <textarea name="code" placeholder="Paste your Python, Java, C++, or JavaScript code here..."></textarea>
+
+        <p><b>OR Upload Code File</b></p>
+        <input type="file" name="file" accept=".py,.java,.cpp,.js">
+
+        <br>
+        <button type="submit" id="annotate-btn">✨ Annotate Code</button>
+    </form>
+
+    {% if result %}
+    <hr>
+    <h3>Annotated Code</h3>
+
+    <form method="POST" action="/download_file">
+        <input type="hidden" name="content" value="{{ result }}">
+        <input type="hidden" name="filename" value="{{ download_filename }}">
+        <button type="submit">⬇ Download Annotated File</button>
+    </form>
+
+    <pre>{{ result }}</pre>
+    {% endif %}
+
+    {% if explanation %}
+    <hr>
+    <h3>Program Explanation</h3>
+    <pre>{{ explanation }}</pre>
+    {% endif %}
+
+    {% if time_complexity %}
+    <h3>Time Complexity</h3>
+    <pre>{{ time_complexity }}</pre>
+    {% endif %}
+
+    {% if space_complexity %}
+    <h3>Space Complexity</h3>
+    <pre>{{ space_complexity }}</pre>
+    {% endif %}
+
+    <script>
+        document.getElementById('annotate-form').addEventListener('submit', function () {
+            const overlay = document.getElementById('loading-overlay');
+            const btn = document.getElementById('annotate-btn');
+            overlay.classList.add('active');
+            btn.disabled = true;
+            btn.textContent = '⏳ Annotating…';
+        });
+    </script>
+
+</body>
+
+</html>
