@@ -1,10 +1,10 @@
-# 🧠 Code Annotation and Documentation Generation System
+# Code Annotation and Documentation Generation System
 
 An AI-powered web tool built with Flask and Google Gemini that automatically annotates source code, analyzes time/space complexity, and generates professional README and `requirements.txt` files for your projects.
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Auto Code Annotation** — Adds clear, concise block comments to your code explaining each logical section
 - **Complexity Analysis** — Provides time and space complexity (Big-O) with a plain-English program explanation
@@ -18,7 +18,7 @@ An AI-powered web tool built with Flask and Google Gemini that automatically ann
 
 ---
 
-## 🖥️ Demo
+##  Demo
 
 | Code Annotator | README Generator |
 |---|---|
@@ -26,7 +26,7 @@ An AI-powered web tool built with Flask and Google Gemini that automatically ann
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -38,7 +38,7 @@ An AI-powered web tool built with Flask and Google Gemini that automatically ann
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 ai-code-annotator/
@@ -106,24 +106,24 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 ### Code Annotator (`/`)
 
 1. Paste your code into the text area **or** upload a `.py`, `.java`, `.cpp`, or `.js` file
-2. Click **✨ Annotate Code**
+2. Click ** Annotate Code**
 3. View the annotated code, program explanation, and complexity analysis
 4. Click **⬇ Download Annotated File** to save the output
 
 ### README Generator (`/readme`)
 
 1. Paste your project code **or** upload a single file or a `.zip` of your project
-2. Click **🚀 Generate Documentation**
+2. Click ** Generate Documentation**
 3. View and download the generated `README.md` and `requirements.txt`
 
 ---
 
-## 🔒 Security
+##  Security
 
 - API key loaded from environment variable — never hardcoded
 - ZIP extraction guards against path traversal attacks
@@ -132,7 +132,7 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 ---
 
-## 📦 Requirements
+##  Requirements
 
 ```
 flask
